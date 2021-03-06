@@ -19,7 +19,7 @@ def pixel_classification(image):
 # returns: a tuple (a,b) that describes the line according to the formula x = a + b*y
 # 
 # note: call this function twice, once for the right boundary and once fo the left boundary
-# note2: the result have the x and y swapped from a typical linear equation to reduce the chance of dividing by 0
+# note2: the result has the x and y swapped from a typical linear equation to reduce the chance of dividing by 0
 def left_right_boundary_estimation(points):
     CONSTANT_Ta = 10  #threshold for removing tab lines
     valid = False
@@ -48,16 +48,15 @@ def left_right_boundary_estimation(points):
             #flat line corner case (to avoid division by 0)
             for x,y in curPoints:
                 if(abs(x - a) > CONSTANT_Ta):
-                    print("removed ({},{})".format(x,y))
+                    #print("removed ({},{})".format(x,y))
                     curPoints.remove((x,y))
                     valid = False
         else:
             for x,y in curPoints:
                 if(abs(-a*x+y+b)/math.sqrt(a**2+1) > CONSTANT_Ta):
-                    print("removed ({},{})".format(x,y))
+                    #print("removed ({},{})".format(x,y))
                     curPoints.remove((x,y))
                     valid = False
-
     return a, b
 
 
